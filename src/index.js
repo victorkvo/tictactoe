@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import { FaCat } from 'react-icons/fa'
-import { FaDog } from 'react-icons/fa'
+// import { FaCat } from 'react-icons/fa'
+// import { FaDog } from 'react-icons/fa'
 
 function Square(props) {
     return (
@@ -26,7 +26,7 @@ function Square(props) {
       if (calculateWinner(squares) || squares[i]) {
         return;
       }
-      squares[i] = this.state.xIsNext ? <FaCat /> : <FaDog />;
+      squares[i] = this.state.xIsNext ? "X" : "O" ;
       this.setState({
         squares: squares,
         xIsNext: !this.state.xIsNext,
