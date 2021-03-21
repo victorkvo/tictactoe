@@ -1,8 +1,66 @@
-import React from "react";
+import React, {Component} from 'react';
 import ReactDOM from "react-dom";
 import "./index.css";
-// import { FaCat } from 'react-icons/fa'
-// import { FaDog } from 'react-icons/fa'
+import {
+  BrowserRouter as Router, // we are aliasing this module for a cleaner call
+  Route,
+  Link
+  // etc.
+} from 'react-router-dom';
+
+
+
+
+class Boop extends Component {
+  render() {
+    return (
+      <div>
+        Boop
+      </div>
+    );
+  }
+}
+
+class Beep extends Component {
+  render() {
+    return (
+      <div>
+        Beep
+      </div>
+    );
+  }
+}
+
+
+
+class Navbar extends Component {
+  render(){
+    return(
+      <div className="nav">
+        <Link to="/s">Game</Link> | 
+        <Link to="Boop">Boop</Link> | 
+        <Link to="Beep">Beep</Link>
+      </div>
+    );
+  }
+}
+
+class Routes extends Component {
+  render(){
+    return(
+      <Router>
+        <div>
+          <Navbar />
+          <hr />
+          <Route name="Home" exact path="/s" component={Game}/>
+          <Route name="Beep" path="/beep" component={Beep}/>
+          <Route name="Boop" path="/boop" component={Boop} />
+        </div>
+      </Router>
+    );
+  }
+}
+
 
 function Square(props) {
     return (
@@ -26,7 +84,7 @@ function Square(props) {
       if (calculateWinner(squares) || squares[i]) {
         return;
       }
-      squares[i] = this.state.xIsNext ? "X" : "O" ;
+      squares[i] = this.state.xIsNext ? "X" : "O";
       this.setState({
         squares: squares,
         xIsNext: !this.state.xIsNext,
@@ -49,7 +107,7 @@ function Square(props) {
       if (winner) {
         status = 'Winner: ' + winner;
       } else {
-        status = 'Next player: ' + (this.state.xIsNext ? 'Cat' : 'Dog');
+        status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
       }
   
       return (
@@ -93,11 +151,18 @@ function Square(props) {
   
   // ========================================
   
+  // ReactDOM.render(
+  //   <React.StrictMode>
+  //     <Routes />
+  //     <Game />
+  //   </React.StrictMode>,
+  //   document.getElementById('root')
+  // );
   ReactDOM.render(
-    <Game />,
-    document.getElementById('root')
+  <Routes />, 
+  document.getElementById('root')
   );
-  
+
   function calculateWinner(squares) {
     const lines = [
       [0, 1, 2],
@@ -117,4 +182,5 @@ function Square(props) {
     }
     return null;
   }
+  
   
